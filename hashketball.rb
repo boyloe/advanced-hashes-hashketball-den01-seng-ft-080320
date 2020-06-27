@@ -131,45 +131,32 @@ end
 
 def num_points_scored(player)
   points_scored = 0
-  
-  home_players = game_hash[:home][:players]
-  away_players = game_hash[:away][:players]
-  
-  home_players.each do |index|
-    index.each do |attribute,value|
-      if value == player
-        points_scored = index[:points]
+  game_hash.each do |team, team_attributes|
+    team_attributes.each do |attribute, value|
+      if attribute == :players
+        value.each do |key, stat|
+          if key[:player_name] == player
+            points_scored = key[:points]
+          end
+        end
       end
     end
   end
-  
-  away_players.each do |index|
-    index.each do |attribute,value|
-      if value == player
-        points_scored = index[:points]
-      end  
-    end  
-  end
   points_scored
-end  
+end
 
 def shoe_size(player)
   shoe_size = 0
-  home_players = game_hash[:home][:players]
-  away_players = game_hash[:away][:players]
-  home_players.each do |index|
-    index.each do |attribute,value|
-      if value == player
-        shoe_size = index[:shoe]
+  game_hash.each do |team, team_attributes|
+    team_attributes.each do |attribute, value|
+      if attribute == :players
+        value.each do |key, stat|
+          if key[:player_name] == player
+            shoe_size = key[:shoe]
+          end
+        end
       end
     end
-  end
-  away_players.each do |index|
-    index.each do |attribute,value|
-      if value == player
-        shoe_size = index[:shoe]
-      end  
-    end  
   end
   shoe_size
 end  
@@ -230,6 +217,8 @@ def player_stats(name)
   end
   stats
 end  
+
+
 def big_shoe_rebounds
   biggest_shoe = 0 
   bs_rebounds = 0 
@@ -248,3 +237,5 @@ def big_shoe_rebounds
   end
   bs_rebounds
 end  
+
+

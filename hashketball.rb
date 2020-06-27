@@ -167,7 +167,7 @@ def team_colors(team)
     team_attributes.each do |attribute, value|
       if value == team
         # team_colors.concat()
-          game_hash[status][:colors]
+          return game_hash[status][:colors]
       end  
     end
   end 

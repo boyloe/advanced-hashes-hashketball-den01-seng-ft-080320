@@ -162,16 +162,13 @@ def shoe_size(player)
 end  
 
 def team_colors(team)
-  team_colors = []
   game_hash.each do |status, team_attributes|
     team_attributes.each do |attribute, value|
       if value == team
-        # team_colors.concat()
           return game_hash[status][:colors]
       end  
     end
-  end 
-  # team_colors
+  end
 end  
 
 def team_names
